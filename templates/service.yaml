@@ -7,11 +7,13 @@ spec:
   selector:
     app: comfyui
   ports:
-    - protocol: TCP
+    - name: http
+      protocol: TCP
       port: {{ .Values.service.port }}
       targetPort: 8188
     {{- if .Values.filebrowser.enabled }}
-    - protocol: TCP
+    - name: filebrowser
+      protocol: TCP
       port: {{ .Values.filebrowser.port }}
       targetPort: {{ .Values.filebrowser.port }}
     {{- end }}
