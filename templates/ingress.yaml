@@ -3,6 +3,9 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: comfyui
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   ingressClassName: {{ .Values.comfyui.ingress.className }}
   rules:
@@ -17,7 +20,7 @@ spec:
                 port:
                   number: {{ .Values.comfyui.service.port }}
           {{- if .Values.filebrowser.enabled }}
-          - path: /file
+          - path: /file(/|$)(.*)
             pathType: Prefix
             backend:
               service:
@@ -32,3 +35,4 @@ spec:
       secretName: {{ .Values.comfyui.ingress.tls.secretName }}
   {{- end }}
 {{- end }}
+
