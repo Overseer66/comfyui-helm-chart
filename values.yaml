@@ -1,4 +1,3 @@
-
 image:
   repository: yanwk/comfyui-boot
   tag: cu121
@@ -8,9 +7,11 @@ service:
   type: ClusterIP
   port: 8188
 
-resources:
-  limits:
-    nvidia.com/gpu: 1
+gpu:
+  enabled: true
+  num: 1
+
+affinity: {}
 
 storage:
   enabled: true
@@ -22,7 +23,7 @@ storage:
 ingress:
   enabled: true
   className: ""
-  hostname: comfyui.local
+  hostname: comfyui.example.com
   tls:
     enabled: false
     secretName: ""

@@ -12,15 +12,19 @@ spec:
       labels:
         app: comfyui
     spec:
+      affinity:
+        {{- toYaml .Values.affinity | nindent 8 }}
       containers:
         - name: comfyui
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: 8188
+          {{- if .Values.gpu.enabled }}
           resources:
             limits:
-              nvidia.com/gpu: {{ .Values.resources.limits.nvidia.com.gpu }}
+              nvidia.com/gpu: {{ .Values.gpu.num }}
+          {{- end }}
           volumeMounts:
             - name: storage
               mountPath: {{ .Values.storage.mountPath }}
@@ -28,3 +32,4 @@ spec:
         - name: storage
           persistentVolumeClaim:
             claimName: {{ .Values.storage.existingClaim | default "comfyui-pvc" }}
+            
