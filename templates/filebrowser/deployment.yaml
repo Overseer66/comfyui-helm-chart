@@ -13,6 +13,17 @@ spec:
       labels:
         app: filebrowser
     spec:
+      initContainers:
+        - name: create-user
+          image: {{ .Values.filebrowser.image }}
+          command: ["/bin/sh", "-c"]
+          args:
+            - >-
+              filebrowser config init &&
+              filebrowser users add {{ .Values.filebrowser.auth.username }} {{ .Values.filebrowser.auth.password }} /srv
+          volumeMounts:
+            - name: storage
+              mountPath: /srv
       containers:
         - name: filebrowser
           image: {{ .Values.filebrowser.image }}
@@ -21,9 +32,6 @@ spec:
           volumeMounts:
             - name: storage
               mountPath: /srv
-          env:
-            - name: FB_AUTH
-              value: "{{ .Values.filebrowser.auth.username }}:{{ .Values.filebrowser.auth.password }}"
       volumes:
         - name: storage
           persistentVolumeClaim:
