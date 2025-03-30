@@ -38,7 +38,3 @@ filebrowser:
     port: 80
 
   baseurl: /file
-
-  auth:
-    username: admin
-    password: admin
