@@ -15,5 +15,5 @@ spec:
     - name: filebrowser
       protocol: TCP
       port: {{ .Values.filebrowser.service.port }}
-      targetPort: {{ .Values.filebrowser.service.port }}
+      targetPort: 80
     {{- end }}
