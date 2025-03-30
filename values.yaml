@@ -1,37 +1,42 @@
-image:
-  repository: yanwk/comfyui-boot
-  tag: cu121
-  pullPolicy: IfNotPresent
+comfyui:
+  image:
+    repository: yanwk/comfyui-boot
+    tag: cu121
+    pullPolicy: IfNotPresent
 
-service:
-  type: ClusterIP
-  port: 8188
+  service:
+    type: ClusterIP
+    port: 8188
 
-gpu:
-  enabled: true
-  num: 1
+  gpu:
+    enabled: true
+    num: 1
 
-affinity: {}
+  affinity: {}
 
-storage:
-  enabled: true
-  mountPath: /home/runner
-  existingClaim: ""
-  size: 10Gi
-  storageClass: ""
+  storage:
+    enabled: true
+    mountPath: /home/runner
+    existingClaim: ""
+    size: 10Gi
+    storageClass: ""
 
-ingress:
-  enabled: true
-  className: ""
-  hostname: comfyui.example.com
-  tls:
-    enabled: false
-    secretName: ""
+  ingress:
+    enabled: true
+    className: ""
+    hostname: comfyui.example.com
+    tls:
+      enabled: false
+      secretName: ""
 
 filebrowser:
   enabled: true
   image: filebrowser/filebrowser
-  port: 80
+
+  service:
+    type: ClusterIP
+    port: 80
+  
   auth:
     username: admin
     password: admin

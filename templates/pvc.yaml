@@ -1,4 +1,4 @@
-{{- if .Values.storage.enabled }}
+{{- if .Values.comfyui.storage.enabled }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -8,8 +8,8 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: {{ .Values.storage.size }}
-  {{- if .Values.storage.storageClass }}
-  storageClassName: {{ .Values.storage.storageClass }}
+      storage: {{ .Values.comfyui.storage.size }}
+  {{- if .Values.comfyui.storage.storageClass }}
+  storageClassName: {{ .Values.comfyui.storage.storageClass }}
   {{- end }}
 {{- end }}

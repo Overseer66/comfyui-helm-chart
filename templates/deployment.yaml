@@ -13,26 +13,26 @@ spec:
         app: comfyui
     spec:
       affinity:
-        {{- toYaml .Values.affinity | nindent 8 }}
+        {{- toYaml .Values.comfyui.affinity | nindent 8 }}
       containers:
         - name: comfyui
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.comfyui.image.repository }}:{{ .Values.comfyui.image.tag }}"
+          imagePullPolicy: {{ .Values.comfyui.image.pullPolicy }}
           ports:
             - containerPort: 8188
-          {{- if .Values.gpu.enabled }}
+          {{- if .Values.comfyui.gpu.enabled }}
           resources:
             limits:
-              nvidia.com/gpu: {{ .Values.gpu.num }}
+              nvidia.com/gpu: {{ .Values.comfyui.gpu.num }}
           {{- end }}
           volumeMounts:
             - name: storage
-              mountPath: {{ .Values.storage.mountPath }}
+              mountPath: {{ .Values.comfyui.storage.mountPath }}
         {{- if .Values.filebrowser.enabled }}
         - name: filebrowser
           image: {{ .Values.filebrowser.image }}
           ports:
-            - containerPort: {{ .Values.filebrowser.port }}
+            - containerPort: {{ .Values.filebrowser.service.port }}
           volumeMounts:
             - name: storage
               mountPath: /srv
@@ -43,4 +43,4 @@ spec:
       volumes:
         - name: storage
           persistentVolumeClaim:
-            claimName: {{ .Values.storage.existingClaim | default "comfyui-pvc" }}
+            claimName: {{ .Values.comfyui.storage.existingClaim | default "comfyui-pvc" }}
