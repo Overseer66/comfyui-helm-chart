@@ -21,7 +21,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: comfyui
+                name: filebrowser
                 port:
                   number: {{ .Values.filebrowser.service.port }}
           {{- end }}
