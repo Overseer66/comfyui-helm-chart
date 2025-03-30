@@ -11,9 +11,3 @@ spec:
       protocol: TCP
       port: {{ .Values.comfyui.service.port }}
       targetPort: 8188
-    {{- if .Values.filebrowser.enabled }}
-    - name: filebrowser
-      protocol: TCP
-      port: {{ .Values.filebrowser.service.port }}
-      targetPort: {{ .Values.filebrowser.service.port }}
-    {{- end }}

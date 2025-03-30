@@ -1,34 +1,19 @@
+{{- if .Values.filebrowser.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: comfyui
+  name: filebrowser
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: comfyui
+      app: filebrowser
   template:
     metadata:
       labels:
-        app: comfyui
+        app: filebrowser
     spec:
-      affinity:
-        {{- toYaml .Values.comfyui.affinity | nindent 8 }}
       containers:
-        - name: comfyui
-          image: "{{ .Values.comfyui.image.repository }}:{{ .Values.comfyui.image.tag }}"
-          imagePullPolicy: {{ .Values.comfyui.image.pullPolicy }}
-          ports:
-            - containerPort: 8188
-          {{- if .Values.comfyui.gpu.enabled }}
-          resources:
-            limits:
-              nvidia.com/gpu: {{ .Values.comfyui.gpu.num }}
-          {{- end }}
-          volumeMounts:
-            - name: storage
-              mountPath: {{ .Values.comfyui.storage.mountPath }}
-        {{- if .Values.filebrowser.enabled }}
         - name: filebrowser
           image: {{ .Values.filebrowser.image }}
           ports:
@@ -39,8 +24,8 @@ spec:
           env:
             - name: FB_AUTH
               value: "{{ .Values.filebrowser.auth.username }}:{{ .Values.filebrowser.auth.password }}"
-        {{- end }}
       volumes:
         - name: storage
           persistentVolumeClaim:
             claimName: {{ .Values.comfyui.storage.existingClaim | default "comfyui-pvc" }}
+{{- end }}
