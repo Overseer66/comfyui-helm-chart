@@ -37,4 +37,4 @@ filebrowser:
     type: ClusterIP
     port: 80
 
-  baseurl: /
+  baseurl: /file
