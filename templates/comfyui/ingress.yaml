@@ -9,7 +9,7 @@ spec:
     - host: {{ .Values.comfyui.ingress.hostname }}
       http:
         paths:
-          - path: /
+          - path: /comfyui
             pathType: Prefix
             backend:
               service:
