@@ -37,13 +37,7 @@ filebrowser:
     type: ClusterIP
     port: 80
 
-  ingress:
-    enabled: true
-    className: ""
-    hostname: filebrowser.example.com
-    tls:
-      enabled: false
-      secretName: ""
+  baseurl: /file
 
   auth:
     username: admin

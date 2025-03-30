@@ -27,6 +27,9 @@ spec:
       containers:
         - name: filebrowser
           image: {{ .Values.filebrowser.image }}
+          args:
+            - "--baseurl"
+            - "{{ .Values.filebrowser.baseurl }}"
           ports:
             - containerPort: {{ .Values.filebrowser.service.port }}
           volumeMounts:
