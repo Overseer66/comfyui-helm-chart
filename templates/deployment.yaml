@@ -28,8 +28,19 @@ spec:
           volumeMounts:
             - name: storage
               mountPath: {{ .Values.storage.mountPath }}
+        {{- if .Values.filebrowser.enabled }}
+        - name: filebrowser
+          image: {{ .Values.filebrowser.image }}
+          ports:
+            - containerPort: {{ .Values.filebrowser.port }}
+          volumeMounts:
+            - name: storage
+              mountPath: /srv
+          env:
+            - name: FB_AUTH
+              value: "{{ .Values.filebrowser.auth.username }}:{{ .Values.filebrowser.auth.password }}"
+        {{- end }}
       volumes:
         - name: storage
           persistentVolumeClaim:
             claimName: {{ .Values.storage.existingClaim | default "comfyui-pvc" }}
-            

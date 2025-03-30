@@ -16,6 +16,15 @@ spec:
                 name: comfyui
                 port:
                   number: {{ .Values.service.port }}
+          {{- if .Values.filebrowser.enabled }}
+          - path: /file
+            pathType: Prefix
+            backend:
+              service:
+                name: comfyui
+                port:
+                  number: {{ .Values.filebrowser.port }}
+          {{- end }}
   {{- if .Values.ingress.tls.enabled }}
   tls:
     - hosts:

@@ -8,7 +8,7 @@ service:
   port: 8188
 
 gpu:
-  enabled: false
+  enabled: true
   num: 1
 
 affinity: {}
@@ -27,3 +27,11 @@ ingress:
   tls:
     enabled: false
     secretName: ""
+
+filebrowser:
+  enabled: true
+  image: filebrowser/filebrowser
+  port: 8080
+  auth:
+    username: admin
+    password: admin
