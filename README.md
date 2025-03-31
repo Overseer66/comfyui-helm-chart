@@ -9,3 +9,9 @@ This chart uses the Docker image based on [YanWenKun/ComfyUI-Docker](https://git
 ## Notes
 
 - Additional Kubernetes objects can be injected via `extraObjects` in `values.yaml`.
+
+
+## Tags
+
+- simple: only comfyui chart
+- filebrowser: filebrowser available mode
