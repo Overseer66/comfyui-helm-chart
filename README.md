@@ -37,6 +37,8 @@ https://comfyui.example.com/file
 
 By default, FileBrowser will start **without any user authentication**.
 
+* default ID/PASSWORD: `admin`/`admin`
+
 It is strongly recommended to:
 
 1. **Immediately create an admin account** after first access.
