@@ -43,7 +43,7 @@ By default, code-server is running without a password. It is recommended to use 
 ### Add Helm Repository
 
 ```bash
-helm repo add comfyui https://overseer66.github.io/comfyui-chart
+helm repo add comfyui https://overseer66.github.io/comfyui-chart/docs
 helm repo update
 ```
 
