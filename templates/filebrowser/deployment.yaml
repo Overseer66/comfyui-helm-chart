@@ -4,36 +4,26 @@ kind: Deployment
 metadata:
   name: {{ include "comfyui.filebrowserName" . }}
   labels:
-{{ toYaml (include "comfyui.labels" . | fromYaml) | indent 4 }}
+{{ include "comfyui.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-{{ toYaml (include "comfyui.selectorLabels" . | fromYaml) | indent 6 }}
+{{ include "comfyui.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-{{ toYaml (include "comfyui.selectorLabels" . | fromYaml) | indent 8 }}
+{{ include "comfyui.selectorLabels" . | nindent 8 }}
     spec:
-      initContainers:
-        - name: filebrowser-init
-          image: {{ .Values.filebrowser.image }}
-          command:
-            - /bin/sh
-            - -c
-            - |
-              filebrowser config init
-              filebrowser users add {{ .Values.filebrowser.auth.username }} {{ .Values.filebrowser.auth.password }} --perm.admin
-              cp -r /database /srv/.filebrowser
-          volumeMounts:
-            - name: storage
-              mountPath: /srv
       containers:
         - name: filebrowser
           image: {{ .Values.filebrowser.image }}
           args:
             - "--baseurl"
             - "{{ .Values.filebrowser.baseurl }}"
+          envFrom:
+            - secretRef:
+                name: {{ include "comfyui.filebrowserName" . }}-auth
           ports:
             - containerPort: 80
           volumeMounts:

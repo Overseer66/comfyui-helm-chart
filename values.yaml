@@ -67,3 +67,7 @@ filebrowser:
 
   # FileBrowser access path (Ingress Path)
   baseurl: /file
+
+# Fullname and name overrides
+fullnameOverride: ""
+nameOverride: ""
