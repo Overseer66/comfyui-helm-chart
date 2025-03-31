@@ -29,7 +29,7 @@ comfyui:
 
   # Ingress settings
   ingress:
-    enabled: true
+    enabled: false
     className: ""
     hostname: comfyui.example.com
     tls:
@@ -54,7 +54,7 @@ comfyui:
 # FileBrowser configuration
 filebrowser:
   # Enable or disable FileBrowser
-  enabled: true
+  enabled: false
   image: filebrowser/filebrowser
 
   service:
