@@ -4,11 +4,11 @@ kind: Service
 metadata:
   name: {{ include "comfyui.filebrowserName" . }}
   labels:
-    {{- include "comfyui.labels" . | nindent 4 }}
+{{ toYaml (include "comfyui.labels" . | fromYaml) | indent 4 }}
 spec:
   type: {{ .Values.filebrowser.service.type }}
   selector:
-    {{- include "comfyui.selectorLabels" . | nindent 4 }}
+{{ toYaml (include "comfyui.selectorLabels" . | fromYaml) | indent 4 }}
   ports:
     - name: http
       protocol: TCP

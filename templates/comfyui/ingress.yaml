@@ -4,10 +4,10 @@ kind: Ingress
 metadata:
   name: {{ include "comfyui.fullname" . }}
   labels:
-    {{- include "comfyui.labels" . | nindent 4 }}
+{{ toYaml (include "comfyui.labels" . | fromYaml) | indent 4 }}
   {{- with .Values.comfyui.ingress.annotations }}
   annotations:
-    {{- toYaml . | nindent 4 }}
+{{ toYaml . | indent 4 }}
   {{- end }}
 spec:
   ingressClassName: {{ .Values.comfyui.ingress.className }}

@@ -3,11 +3,11 @@ kind: Service
 metadata:
   name: {{ include "comfyui.comfyuiName" . }}
   labels:
-    {{- include "comfyui.labels" . | nindent 4 }}
+{{ toYaml (include "comfyui.labels" . | fromYaml) | indent 4 }}
 spec:
   type: {{ .Values.comfyui.service.type }}
   selector:
-    {{- include "comfyui.selectorLabels" . | nindent 4 }}
+{{ toYaml (include "comfyui.selectorLabels" . | fromYaml) | indent 4 }}
   ports:
     - name: http
       protocol: TCP

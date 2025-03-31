@@ -4,16 +4,16 @@ kind: Deployment
 metadata:
   name: {{ include "comfyui.filebrowserName" . }}
   labels:
-    {{- include "comfyui.labels" . | nindent 4 }}
+{{ toYaml (include "comfyui.labels" . | fromYaml) | indent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      {{- include "comfyui.selectorLabels" . | nindent 6 }}
+{{ toYaml (include "comfyui.selectorLabels" . | fromYaml) | indent 6 }}
   template:
     metadata:
       labels:
-        {{- include "comfyui.selectorLabels" . | nindent 8 }}
+{{ toYaml (include "comfyui.selectorLabels" . | fromYaml) | indent 8 }}
     spec:
       initContainers:
         - name: filebrowser-init
