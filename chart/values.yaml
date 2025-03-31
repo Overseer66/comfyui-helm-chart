@@ -68,6 +68,7 @@ fullnameOverride: ""
 nameOverride: ""
 
 extraObjects: []
+# Example secret for basic-auth
 # extraObjects:
 #   - apiVersion: v1
 #     kind: Secret
