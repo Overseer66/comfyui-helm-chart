@@ -43,13 +43,6 @@ ComfyUI specific name
 {{- end }}
 
 {{/*
-Filebrowser specific name
-*/}}
-{{- define "comfyui.filebrowserName" -}}
-{{ include "comfyui.fullname" . }}-filebrowser
-{{- end }}
-
-{{/*
 Ingress annotations
 */}}
 {{- define "comfyui.ingressAnnotations" -}}
@@ -57,15 +50,3 @@ Ingress annotations
 {{ toYaml . }}
 {{- end }}
 {{- end }}
-
-{{/*
-Determine Storage AccessMode
-*/}}
-{{- define "comfyui.storageAccessMode" -}}
-{{- if .Values.filebrowser.enabled -}}
-ReadWriteMany
-{{- else -}}
-ReadWriteOnce
-{{- end -}}
-{{- end }}
-

@@ -22,15 +22,6 @@ spec:
                 name: {{ include "comfyui.comfyuiName" . }}
                 port:
                   number: {{ .Values.comfyui.service.port }}
-          {{- if .Values.filebrowser.enabled }}
-          - path: {{ .Values.filebrowser.baseurl }}
-            pathType: Prefix
-            backend:
-              service:
-                name: {{ include "comfyui.filebrowserName" . }}
-                port:
-                  number: {{ .Values.filebrowser.service.port }}
-          {{- end }}
   {{- if .Values.comfyui.ingress.tls.enabled }}
   tls:
     - hosts:

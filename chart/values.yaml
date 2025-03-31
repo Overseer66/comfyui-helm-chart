@@ -51,19 +51,6 @@ comfyui:
     #   nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.example.com/oauth2/auth"
     #   nginx.ingress.kubernetes.io/auth-signin: "https://oauth2-proxy.example.com/oauth2/start?rd=$scheme://$host$request_uri"
 
-# FileBrowser configuration
-filebrowser:
-  # Enable or disable FileBrowser
-  enabled: false
-  image: filebrowser/filebrowser
-
-  service:
-    type: ClusterIP
-    port: 80
-
-  # FileBrowser access path (Ingress Path)
-  baseurl: /file
-
 # Fullname and name overrides
 fullnameOverride: ""
 nameOverride: ""
