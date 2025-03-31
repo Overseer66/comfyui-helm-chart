@@ -36,7 +36,7 @@ comfyui:
       enabled: false
       secretName: ""
     annotations: {}
-    # To enable basic-auth, create a Secret like this:
+    # To enable basic-auth of ingress-nginx-controller, create a Secret like this:
     # kubectl create secret generic comfyui-basic-auth --from-literal=auth="<username>:<bcrypt-password>" -n <namespace>
     # You can generate bcrypt password using:
     # htpasswd -nbB <username> <password>
