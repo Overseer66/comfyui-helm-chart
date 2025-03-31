@@ -21,9 +21,6 @@ spec:
           args:
             - "--baseurl"
             - "{{ .Values.filebrowser.baseurl }}"
-          envFrom:
-            - secretRef:
-                name: {{ include "comfyui.filebrowserName" . }}-auth
           ports:
             - containerPort: 80
           volumeMounts:

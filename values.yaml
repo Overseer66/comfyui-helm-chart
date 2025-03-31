@@ -60,11 +60,6 @@ filebrowser:
     type: ClusterIP
     port: 80
 
-  # FileBrowser default username and password
-  auth:
-    username: admin
-    password: admin
-
   # FileBrowser access path (Ingress Path)
   baseurl: /file
 
