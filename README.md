@@ -35,8 +35,7 @@ https://<your-domain>/
 ```
 https://<your-domain>/code/
 ```
-
-By default, code-server is running without a password. It is recommended to use an Ingress authentication proxy or set a password via the environment variable.
+By default, code-server is running with the password `1q2w3e4r`. It is recommended to use an Ingress authentication proxy or change the password via the environment variable for enhanced security.
 
 ## Installation
 
