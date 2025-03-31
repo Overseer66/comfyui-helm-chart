@@ -19,7 +19,7 @@ Additionally, it now supports an integrated image with **code-server**:
 ## Notes
 
 - Additional Kubernetes objects can be injected via `extraObjects` in `values.yaml`.
-- code-server is included in the default image and accessible via `/code` path.
+- code-server is included in the default image and accessible via `/code/` path.
 - You can set a password for code-server via the `PASSWORD` environment variable in `values.yaml` (default is no password).
 
 ## Access
@@ -34,6 +34,7 @@ https://<your-domain>/
 
 ```
 https://<your-domain>/code/
+> **Note:** When accessing code-server, ensure the URL ends with a trailing `/` (e.g., `https://<your-domain>/code/`). Omitting it may result in unexpected behavior.
 ```
 By default, code-server is running with the password `1q2w3e4r`. It is recommended to use an Ingress authentication proxy or change the password via the environment variable for enhanced security.
 
