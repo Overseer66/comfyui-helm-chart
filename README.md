@@ -22,7 +22,7 @@ helm repo update
 ### Download
 
 ```bash
-helm fetch chart/comfyui --untar
+helm fetch comfyui/comfyui --untar
 ```
 
 ### Upgrade/Install
