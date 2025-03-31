@@ -35,4 +35,3 @@ helm upgrade -i --create-namespace -n <namespace> comfyui .
 ## Tags
 
 - simple: only comfyui chart
-- filebrowser: filebrowser available mode
