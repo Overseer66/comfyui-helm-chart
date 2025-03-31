@@ -13,15 +13,15 @@ spec:
     - host: {{ .Values.comfyui.ingress.hostname }}
       http:
         paths:
-          - path: /
-            pathType: Prefix
+          - path: /()
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: {{ include "comfyui.comfyuiName" . }}
                 port:
                   number: 8188
-          - path: /code
-            pathType: Prefix
+          - path: /code(/|$)(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: {{ include "comfyui.comfyuiName" . }}
