@@ -3,32 +3,36 @@ kind: Deployment
 metadata:
   name: {{ include "comfyui.comfyuiName" . }}
   labels:
-{{ toYaml (include "comfyui.labels" . | fromYaml) | indent 4 }}
+{{ include "comfyui.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-{{ toYaml (include "comfyui.selectorLabels" . | fromYaml) | indent 6 }}
+{{ include "comfyui.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-{{ toYaml (include "comfyui.selectorLabels" . | fromYaml) | indent 8 }}
+{{ include "comfyui.selectorLabels" . | nindent 8 }}
     spec:
-      {{- with .Values.comfyui.affinity }}
       affinity:
-{{ toYaml . | indent 8 }}
-      {{- end }}
+{{ toYaml .Values.comfyui.affinity | nindent 8 }}
       containers:
         - name: comfyui
           image: "{{ .Values.comfyui.image.repository }}:{{ .Values.comfyui.image.tag }}"
           imagePullPolicy: {{ .Values.comfyui.image.pullPolicy }}
           ports:
-            - containerPort: 8188
+{{- range .Values.comfyui.service.ports }}
+            - containerPort: {{ .targetPort }}
+{{- end }}
           {{- if .Values.comfyui.gpu.enabled }}
           resources:
             limits:
               nvidia.com/gpu: {{ .Values.comfyui.gpu.num }}
           {{- end }}
+          env:
+            {{- if .Values.comfyui.env }}
+            {{ toYaml .Values.comfyui.env | nindent 12 }}
+            {{- end }}
           volumeMounts:
             - name: storage
               mountPath: {{ .Values.comfyui.storage.mountPath }}

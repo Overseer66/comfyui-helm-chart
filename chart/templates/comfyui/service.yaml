@@ -3,13 +3,15 @@ kind: Service
 metadata:
   name: {{ include "comfyui.comfyuiName" . }}
   labels:
-{{ toYaml (include "comfyui.labels" . | fromYaml) | indent 4 }}
+{{ include "comfyui.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.comfyui.service.type }}
   selector:
-{{ toYaml (include "comfyui.selectorLabels" . | fromYaml) | indent 4 }}
+{{ include "comfyui.selectorLabels" . | nindent 4 }}
   ports:
-    - name: http
+{{- range .Values.comfyui.service.ports }}
+    - name: {{ .name }}
       protocol: TCP
-      port: {{ .Values.comfyui.service.port }}
-      targetPort: 8188
+      port: {{ .port }}
+      targetPort: {{ .targetPort }}
+{{- end }}

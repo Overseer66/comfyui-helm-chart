@@ -1,14 +1,24 @@
+# Fullname and name overrides
+fullnameOverride: ""
+nameOverride: ""
+
 comfyui:
   # ComfyUI container image settings
   image:
-    repository: yanwk/comfyui-boot
-    tag: cu121
+    repository: overseer66/comfyui
+    tag: latest
     pullPolicy: IfNotPresent
 
   # ComfyUI service type and port settings
   service:
     type: ClusterIP
-    port: 8188
+    ports:
+      - name: comfyui
+        port: 8188
+        targetPort: 8188
+      - name: code
+        port: 8080
+        targetPort: 8080
 
   # NVIDIA GPU usage and count settings
   gpu:
@@ -16,6 +26,12 @@ comfyui:
     enabled: true
     num: 1
 
+  env: []
+  # Optional: Set code-server password
+  # env:
+  #   - name: PASSWORD
+  #     value: "your-password"
+  
   # Node affinity settings
   affinity:
 
@@ -50,10 +66,6 @@ comfyui:
     #   nginx.ingress.kubernetes.io/auth-realm: "Authentication Required"
     #   nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.example.com/oauth2/auth"
     #   nginx.ingress.kubernetes.io/auth-signin: "https://oauth2-proxy.example.com/oauth2/start?rd=$scheme://$host$request_uri"
-
-# Fullname and name overrides
-fullnameOverride: ""
-nameOverride: ""
 
 extraObjects: []
 # Example secret for basic-auth

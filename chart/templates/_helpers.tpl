@@ -50,3 +50,10 @@ Ingress annotations
 {{ toYaml . }}
 {{- end }}
 {{- end }}
+
+{{/*
+Determine Storage AccessMode
+*/}}
+{{- define "comfyui.storageAccessMode" -}}
+ReadWriteOnce
+{{- end }}

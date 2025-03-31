@@ -2,13 +2,11 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "comfyui.fullname" . }}
+  name: {{ include "comfyui.comfyuiName" . }}
   labels:
-{{ toYaml (include "comfyui.labels" . | fromYaml) | indent 4 }}
-  {{- with .Values.comfyui.ingress.annotations }}
+{{ include "comfyui.labels" . | nindent 4 }}
   annotations:
-{{ toYaml . | indent 4 }}
-  {{- end }}
+{{ include "comfyui.ingressAnnotations" . | nindent 4 }}
 spec:
   ingressClassName: {{ .Values.comfyui.ingress.className }}
   rules:
@@ -21,7 +19,14 @@ spec:
               service:
                 name: {{ include "comfyui.comfyuiName" . }}
                 port:
-                  number: {{ .Values.comfyui.service.port }}
+                  number: 8188
+          - path: /code
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "comfyui.comfyuiName" . }}
+                port:
+                  number: 8080
   {{- if .Values.comfyui.ingress.tls.enabled }}
   tls:
     - hosts:
