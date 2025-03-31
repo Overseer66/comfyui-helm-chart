@@ -39,7 +39,7 @@ comfyui:
     # To enable basic-auth of ingress-nginx-controller, create a Secret like this:
     # kubectl create secret generic comfyui-basic-auth --from-literal=auth="<username>:<bcrypt-password>" -n <namespace>
     # You can generate bcrypt password using:
-    # htpasswd -nbB <username> <password>
+    # htpasswd -c auth foo
     #
     # For OAuth2 Proxy, make sure the proxy service is running and configured properly.
     # Example:
@@ -68,3 +68,11 @@ fullnameOverride: ""
 nameOverride: ""
 
 extraObjects: []
+# extraObjects:
+#   - apiVersion: v1
+#     kind: Secret
+#     metadata:
+#       name: comfyui-basic-auth
+#     type: Opaque
+#     data:
+#       auth: YWRtaW46JGFkbWluCg==  # admin:admin

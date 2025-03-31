@@ -1,3 +1,4 @@
-{{- if .Values.extraObjects }}
-{{ toYaml .Values.extraObjects | nindent 0 }}
+{{- range .Values.extraObjects }}
+---
+{{ toYaml . | nindent 0 }}
 {{- end }}
