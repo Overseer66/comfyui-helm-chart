@@ -4,10 +4,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: comfyui-pvc
   labels:
-{{ toYaml (include "comfyui.labels" . | fromYaml) | indent 4 }}
+{{ include "comfyui.labels" . | nindent 4 }}
 spec:
   accessModes:
-    - ReadWriteMany
+    - {{ include "comfyui.storageAccessMode" . }}
   resources:
     requests:
       storage: {{ .Values.comfyui.storage.size }}

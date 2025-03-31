@@ -57,3 +57,14 @@ Ingress annotations
 {{ toYaml . }}
 {{- end }}
 {{- end }}
+
+{{/*
+Determine Storage AccessMode
+*/}}
+{{- define "comfyui.storageAccessMode" -}}
+{{- if .Values.filebrowser.enabled }}
+ReadWriteMany
+{{- else }}
+ReadWriteOnce
+{{- end }}
+{{- end }}
