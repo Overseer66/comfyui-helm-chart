@@ -7,7 +7,7 @@ metadata:
 {{ toYaml (include "comfyui.labels" . | fromYaml) | indent 4 }}
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: {{ .Values.comfyui.storage.size }}
