@@ -10,6 +10,27 @@ This chart uses the Docker image based on [YanWenKun/ComfyUI-Docker](https://git
 
 - Additional Kubernetes objects can be injected via `extraObjects` in `values.yaml`.
 
+## Installation
+
+### Add Helm Repository
+
+```bash
+helm repo add comfyui https://overseer66.github.io/comfyui-chart
+helm repo update
+```
+
+### Download
+
+```bash
+helm fetch chart/comfyui --untar
+```
+
+### Upgrade/Install
+
+```bash
+# /<PWD>/chart
+helm upgrade -i --create-namespace -n <namespace> comfyui .
+```
 
 ## Tags
 
