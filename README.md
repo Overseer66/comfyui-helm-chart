@@ -1,6 +1,6 @@
 # ComfyUI Helm Chart
 
-This repository contains a simple Helm chart for deploying **ComfyUI** and **FileBrowser**.
+This repository contains a simple Helm chart for deploying **ComfyUI**
 
 ## Docker Image
 
