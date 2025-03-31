@@ -58,14 +58,12 @@ comfyui:
     # You can generate bcrypt password using:
     # htpasswd -c auth foo
     #
-    # For OAuth2 Proxy, make sure the proxy service is running and configured properly.
+    # For Basic Auth, make sure the proxy service is running and configured properly.
     # Example:
     # annotations:
     #   nginx.ingress.kubernetes.io/auth-type: "basic"
     #   nginx.ingress.kubernetes.io/auth-secret: "comfyui-basic-auth"
     #   nginx.ingress.kubernetes.io/auth-realm: "Authentication Required"
-    #   nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.example.com/oauth2/auth"
-    #   nginx.ingress.kubernetes.io/auth-signin: "https://oauth2-proxy.example.com/oauth2/start?rd=$scheme://$host$request_uri"
 
 extraObjects: []
 # Example secret for basic-auth
