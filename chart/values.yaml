@@ -26,11 +26,10 @@ comfyui:
     enabled: true
     num: 1
 
-  env: []
-  # Optional: Set code-server password
-  # env:
-  #   - name: PASSWORD
-  #     value: "your-password"
+  env:
+    # Set code-server password
+    - name: PASSWORD
+      value: "1q2w3e4r"
   
   # Node affinity settings
   affinity:
