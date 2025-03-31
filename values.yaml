@@ -1,19 +1,25 @@
 comfyui:
+  # ComfyUI container image settings
   image:
     repository: yanwk/comfyui-boot
     tag: cu121
     pullPolicy: IfNotPresent
 
+  # ComfyUI service type and port settings
   service:
     type: ClusterIP
     port: 8188
 
+  # NVIDIA GPU usage and count settings
   gpu:
+    # Enable or disable GPU
     enabled: true
     num: 1
 
-  affinity: {}
+  # Node affinity settings
+  affinity:
 
+  # Persistent Volume Claim storage settings
   storage:
     enabled: true
     mountPath: /home/runner
@@ -21,6 +27,7 @@ comfyui:
     size: 10Gi
     storageClass: ""
 
+  # Ingress settings
   ingress:
     enabled: true
     className: ""
@@ -28,8 +35,24 @@ comfyui:
     tls:
       enabled: false
       secretName: ""
+    annotations: {}
+    # To enable basic-auth, create a Secret like this:
+    # kubectl create secret generic comfyui-basic-auth --from-literal=auth="<username>:<bcrypt-password>" -n <namespace>
+    # You can generate bcrypt password using:
+    # htpasswd -nbB <username> <password>
+    #
+    # For OAuth2 Proxy, make sure the proxy service is running and configured properly.
+    # Example:
+    # annotations:
+    #   nginx.ingress.kubernetes.io/auth-type: "basic"
+    #   nginx.ingress.kubernetes.io/auth-secret: "comfyui-basic-auth"
+    #   nginx.ingress.kubernetes.io/auth-realm: "Authentication Required"
+    #   nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.example.com/oauth2/auth"
+    #   nginx.ingress.kubernetes.io/auth-signin: "https://oauth2-proxy.example.com/oauth2/start?rd=$scheme://$host$request_uri"
 
+# FileBrowser configuration
 filebrowser:
+  # Enable or disable FileBrowser
   enabled: true
   image: filebrowser/filebrowser
 
@@ -37,4 +60,10 @@ filebrowser:
     type: ClusterIP
     port: 80
 
+  # FileBrowser default username and password
+  auth:
+    username: admin
+    password: admin
+
+  # FileBrowser access path (Ingress Path)
   baseurl: /file

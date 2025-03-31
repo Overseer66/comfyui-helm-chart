@@ -2,7 +2,13 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: comfyui
+  name: {{ include "comfyui.fullname" . }}
+  labels:
+    {{- include "comfyui.labels" . | nindent 4 }}
+  {{- with .Values.comfyui.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   ingressClassName: {{ .Values.comfyui.ingress.className }}
   rules:
@@ -13,7 +19,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: comfyui
+                name: {{ include "comfyui.comfyuiName" . }}
                 port:
                   number: {{ .Values.comfyui.service.port }}
           {{- if .Values.filebrowser.enabled }}
@@ -21,7 +27,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: filebrowser
+                name: {{ include "comfyui.filebrowserName" . }}
                 port:
                   number: {{ .Values.filebrowser.service.port }}
           {{- end }}

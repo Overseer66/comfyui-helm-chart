@@ -1,11 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: comfyui
+  name: {{ include "comfyui.comfyuiName" . }}
+  labels:
+    {{- include "comfyui.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.comfyui.service.type }}
   selector:
-    app: comfyui
+    {{- include "comfyui.selectorLabels" . | nindent 4 }}
   ports:
     - name: http
       protocol: TCP

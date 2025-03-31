@@ -2,17 +2,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: filebrowser
+  name: {{ include "comfyui.filebrowserName" . }}
+  labels:
+    {{- include "comfyui.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: filebrowser
+      {{- include "comfyui.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app: filebrowser
+        {{- include "comfyui.selectorLabels" . | nindent 8 }}
     spec:
+      initContainers:
+        - name: filebrowser-init
+          image: {{ .Values.filebrowser.image }}
+          command:
+            - /bin/sh
+            - -c
+            - |
+              filebrowser config init
+              filebrowser users add {{ .Values.filebrowser.auth.username }} {{ .Values.filebrowser.auth.password }} --perm.admin
+              cp -r /database /srv/.filebrowser
+          volumeMounts:
+            - name: storage
+              mountPath: /srv
       containers:
         - name: filebrowser
           image: {{ .Values.filebrowser.image }}

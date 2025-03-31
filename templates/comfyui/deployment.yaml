@@ -1,16 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: comfyui
+  name: {{ include "comfyui.comfyuiName" . }}
+  labels:
+    {{- include "comfyui.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: comfyui
+      {{- include "comfyui.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app: comfyui
+        {{- include "comfyui.selectorLabels" . | nindent 8 }}
     spec:
       affinity:
         {{- toYaml .Values.comfyui.affinity | nindent 8 }}
