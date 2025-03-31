@@ -62,9 +62,10 @@ Ingress annotations
 Determine Storage AccessMode
 */}}
 {{- define "comfyui.storageAccessMode" -}}
-{{- if .Values.filebrowser.enabled }}
+{{- if .Values.filebrowser.enabled -}}
 ReadWriteMany
-{{- else }}
+{{- else -}}
 ReadWriteOnce
+{{- end -}}
 {{- end }}
-{{- end }}
+
