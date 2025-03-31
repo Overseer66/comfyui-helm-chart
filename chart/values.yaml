@@ -34,7 +34,7 @@ comfyui:
     hostname: comfyui.example.com
     tls:
       enabled: false
-      secretName: ""
+      secretName: "comfyui-tls"
     annotations: {}
     # ingress-nginx-controller basic-auth reference: https://kubernetes.github.io/ingress-nginx/examples/auth/basic/
     # To enable basic-auth of ingress-nginx-controller, create a Secret like this:
