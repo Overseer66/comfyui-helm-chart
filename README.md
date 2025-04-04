@@ -1,66 +1,65 @@
 # ComfyUI Helm Chart
 
-This repository contains a simple Helm chart for deploying **ComfyUI** and **code-server**.
+A Helm chart for deploying **ComfyUI** and **code-server** on Kubernetes.
 
-## Docker Image
+## Features
 
-This chart uses the Docker image based on [YanWenKun/ComfyUI-Docker](https://github.com/YanWenKun/ComfyUI-Docker).
+- Deploys ComfyUI and code-server in a single chart
+- Uses the official Docker image from [YanWenKun/ComfyUI-Docker](https://github.com/YanWenKun/ComfyUI-Docker)
+- Integrated code-server support
+- Configurable password protection for code-server
+- Support for additional Kubernetes objects via `extraObjects`
 
-Additionally, it now supports an integrated image with **code-server**:
+## Prerequisites
 
-**Image:** [`overseer66/comfyui`](https://hub.docker.com/r/overseer66/comfyui)
+- Kubernetes cluster
+- Helm 3.x
+- Ingress controller (for external access)
 
-## Overview
+## Quick Start
 
-- **ComfyUI Port:** `8188`
-- **code-server Port:** `8080`
-- To enable password authentication for code-server, set the `PASSWORD` environment variable in `values.yaml`.
-
-## Notes
-
-- Additional Kubernetes objects can be injected via `extraObjects` in `values.yaml`.
-- code-server is included in the default image and accessible via `/code/` path.
-- You can set a password for code-server via the `PASSWORD` environment variable in `values.yaml` (default is no password).
-
-## Access
-
-### ComfyUI
-
-```
-https://<your-domain>/
-```
-
-### code-server
-
-```
-https://<your-domain>/code/
-> **Note:** When accessing code-server, ensure the URL ends with a trailing `/` (e.g., `https://<your-domain>/code/`). Omitting it may result in unexpected behavior.
-```
-By default, code-server is running with the password `1q2w3e4r`. It is recommended to use an Ingress authentication proxy or change the password via the environment variable for enhanced security.
-
-## Installation
-
-### Add Helm Repository
+### 1. Add Helm Repository
 
 ```bash
 helm repo add comfyui https://overseer66.github.io/comfyui-chart
 helm repo update
 ```
 
-### Download
+### 2. Install Chart
 
 ```bash
+# Download chart
 helm fetch comfyui/comfyui --untar
-```
 
-### Upgrade/Install
-
-```bash
-# /<PWD>/chart
+# Install/Upgrade
 helm upgrade -i --create-namespace -n <namespace> comfyui .
 ```
 
-### Uninstall
+### 3. Access Services
+
+#### ComfyUI
+```
+https://<your-domain>/
+```
+
+#### code-server
+```
+https://<your-domain>/code/
+```
+> **Note:** Always include the trailing slash when accessing code-server.
+
+## Configuration
+
+### Ports
+- ComfyUI: `8188`
+- code-server: `8080`
+
+### Security
+- code-server password can be set via `PASSWORD` environment variable in `values.yaml`
+- Default password: `1q2w3e4r`
+- Recommended to use Ingress authentication proxy for production
+
+## Uninstallation
 
 ```bash
 helm uninstall comfyui -n <namespace>
@@ -68,5 +67,9 @@ helm uninstall comfyui -n <namespace>
 
 ## Tags
 
-- simple: only comfyui chart
-- code-server: integrated code-server access
+- `simple`: ComfyUI only
+- `code-server`: Integrated code-server access
+
+## Docker Image
+
+**Image:** [`overseer66/comfyui`](https://hub.docker.com/r/overseer66/comfyui)
