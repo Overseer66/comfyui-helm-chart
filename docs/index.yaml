@@ -9,7 +9,7 @@ entries:
     name: comfyui
     type: application
     urls:
-    - https://overseer66.github.io/comfyui-helm-chart/comfyui-0.2.0.tgz
+    - https://overseer66.github.io/comfyui-helm-chart/docs/comfyui-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v2
     appVersion: 0.1.0
@@ -19,6 +19,6 @@ entries:
     name: comfyui
     type: application
     urls:
-    - https://overseer66.github.io/comfyui-helm-chart/comfyui-0.1.0.tgz
+    - https://overseer66.github.io/comfyui-helm-chart/docs/comfyui-0.1.0.tgz
     version: 0.1.0
 generated: "2025-04-12T15:33:34.1010242+09:00"
