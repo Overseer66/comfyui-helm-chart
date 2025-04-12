@@ -3,22 +3,22 @@ entries:
   comfyui:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-03-31T20:14:05.780934+09:00"
+    created: "2025-04-12T15:33:34.1010242+09:00"
     description: A Helm chart for ComfyUI
-    digest: 366af6d15b19096d2b6fd958027530db0f52d52d85e9eab6c668332c1d01eadf
+    digest: 7e245d534f181a346796e70d117b61af2a42aaf27a59fde3b6358af654a2f212
     name: comfyui
     type: application
     urls:
-    - https://overseer66.github.io/comfyui-chart/comfyui-0.2.0.tgz
+    - https://overseer66.github.io/comfyui-helm-chart/comfyui-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2025-03-31T20:14:05.780934+09:00"
+    created: "2025-04-12T15:33:34.1010242+09:00"
     description: A Helm chart for ComfyUI
     digest: 26ed642db80a14209781e728aa804db68657ebeb71043a36832dd0811339bca8
     name: comfyui
     type: application
     urls:
-    - https://overseer66.github.io/comfyui-chart/comfyui-0.1.0.tgz
+    - https://overseer66.github.io/comfyui-helm-chart/comfyui-0.1.0.tgz
     version: 0.1.0
-generated: "2025-03-31T20:14:05.7804214+09:00"
+generated: "2025-04-12T15:33:34.1010242+09:00"
