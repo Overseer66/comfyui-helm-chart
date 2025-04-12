@@ -21,7 +21,7 @@ A Helm chart for deploying **ComfyUI** and **code-server** on Kubernetes.
 ### 1. Add Helm Repository
 
 ```bash
-helm repo add comfyui https://overseer66.github.io/comfyui-chart
+helm repo add comfyui https://overseer66.github.io/comfyui-helm-chart
 helm repo update
 ```
 
